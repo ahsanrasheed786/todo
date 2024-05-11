@@ -14,6 +14,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
 
+
 const frontend_url=process.env.FRONTEND_URL
 app.use(cors({
     // origin:["http://localhost:5173"],

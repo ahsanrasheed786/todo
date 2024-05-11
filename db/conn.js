@@ -7,5 +7,5 @@ export default function database() {
     mongoose.connect(`${MongoDbUrl}${databaseName}`).then(()=>{
         const db = mongoose.connection;
       console.log(`connection successfull with ${db.host}:${db.port}`);
-    }).catch(err => console.log(err))
+    }).catch(err => console.log(` Connection Failed ${err}`))
 }
