@@ -10,14 +10,14 @@ dotenv.config();
 
 const app = express();
 
+
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
-// core is for cross origin resource sharing if we host web server on
-// different origin then we need to use cors which is a middleware will allow 
-//the webserver to give access to the frontend
 
+const frontend_url=process.env.FRONTEND_URL
 app.use(cors({
-    origin:["http://localhost:5173"],
+    // origin:["http://localhost:5173"],
+    origin:[`${frontend_url}`],
     methods:["GET","POST","PUT","DELETE","PATCH"],
     credentials:true    
 }))

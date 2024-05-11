@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
-
-// mongoose.connect("mongodb://127.0.0.1:27017/Task").then(()=>{
-//     console.log("connection successfull");
-// }).catch(err => console.log(err))
-
+import dotenv from 'dotenv';
+dotenv.config();
+const databaseName=process.env.DATABASE_NAME
+const MongoDbUrl=process.env.MONGODB_URL
 export default function database() {
-    mongoose.connect("mongodb://127.0.0.1:27017/Task").then(()=>{
-        console.log("connection successfull");
+    mongoose.connect(`${MongoDbUrl}${databaseName}`).then(()=>{
+        const db = mongoose.connection;
+      console.log(`connection successfull with ${db.host}:${db.port}`);
     }).catch(err => console.log(err))
 }
