@@ -2,18 +2,13 @@ import { Task } from "../model/Task.js";
 
 
 export const newTask = async(req, res) => {
-
-
     const { title, description} = req.body;
-
 try {
-    
     const newTask = await Task.create({
         title,
         description,
         user:req.user,
     });
-
     res.status(201).json(
         {
             sucess: true,
@@ -27,8 +22,6 @@ try {
 
 export const getMytasks  = async(req, res) => {
 const userId=req.user._id;
-
-// console.log(userId)
 try {
     const mytask = await Task.find({user:userId});
     if (!mytask) {
@@ -50,13 +43,11 @@ export const IsCompletedTask =async(req,res) =>{
 
     try {
         const task = await Task.findById(req.params.id);
-
-
         task.isCompleted=!task.isCompleted;
         await task.save();
-        res.status(400).json({ msg: "task updated sucessfully",task });
+        res.status(204).json({ success: true, msg: "Task Updated Sucessfully",task });
     } catch (error) {
-        return res.status(404).json({ msg: "Task not found" });
+        return res.status(404).json({ msg: "Task Not Found" });
     }
 }
 
@@ -66,12 +57,12 @@ try {
     const task = await Task.findById(req.params.id);
 
     await task.deleteOne();
-    res.status(400).json({ msg: "task updated sucessfully",task });
+    res.status(204).json({success: true, msg: "Task  sucessfully Deleted",task });
 
     // res.status(400).json({ msg: "Task deleted",task });
     
 } catch (error) {
-    return res.status(404).json({ msg: "Task not found" });
+    return res.status(404).json({ msg: "Task Not Found" });
 
 }
    

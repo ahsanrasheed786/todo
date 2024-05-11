@@ -7,7 +7,7 @@ export const isAuthenticated = async (req, res, next) => {
     if (!token) {
         return res.status(401).json({
             success: false,
-            message: "You are not logged in"
+            message: "Please Login First"
         });
     }
 

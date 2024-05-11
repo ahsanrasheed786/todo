@@ -52,7 +52,7 @@ export const login = async (req, res) => {
 export const logOut = (req, res) => {
 
       
-        res.status(500).cookie("token", "", { maxAge: 1 }). json({ msg: 'logout sucessfully'});
+        res.status(208).cookie("token", "", { maxAge: 1 }). json({ msg: 'logout sucessfully'});
     
 }
 
